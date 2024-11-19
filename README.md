@@ -1,12 +1,8 @@
-# Ex02 Django ORM Web Application
-## Date: 11.09.2024
+# Ex03 Django ORM Web Application
+## Date: 18/09/2024
 
 ## AIM
 To develop a Django application to store and retrieve data from a bank loan database using Object Relational Mapping(ORM).
-
-## ENTITY RELATIONSHIP DIAGRAM
-![image](https://github.com/user-attachments/assets/d1131e2a-8c4c-46f7-89be-75af75d7eea7)
-
 
 ## DESIGN STEPS
 
@@ -23,31 +19,32 @@ Enter the code for admin.py and models.py
 Execute Django admin and create details for 10 books
 
 ## PROGRAM
+### models.py
+```
+from django.db import models
+from django.contrib import admin
+class Bank(models.Model):
+    customer_id = models.IntegerField(primary_key=True)
+    customer_name = models.CharField(max_length=50)
+    account_type = models.CharField(max_length=50)
+    loan_amount = models.DecimalField(max_digits=10, decimal_places=2)  
+    monthly_interest = models.DecimalField(max_digits=5, decimal_places=2)  
+    due_date = models.DateField()
+
+class Loandetails(admin.ModelAdmin):
+    list_display= ('customer_id','customer_name','account_type','loan_amount','monthly_interest','due_date')
+```
+
 ### admin.py
-```python
+```
 from django.contrib import admin
 from .models import Bankloan,BankloanAdmin
 admin.site.register(Bankloan,BankloanAdmin)
 ```
-### models.py
-```python
-from django.db import models
-from django.contrib import admin
-class Bankloan (models.Model):
-    Loanid=models.IntegerField(primary_key=True);
-    Name=models.CharField(max_length=100);
-    Accountno=models.IntegerField();
-    Salary=models.IntegerField();
-    Loanamt=models.IntegerField();
-
-class BankloanAdmin(admin.ModelAdmin):
-    list_display=('Loanid','Name','Accountno','Salary','Loanamt')
-```
-
 ## OUTPUT
-![image](https://github.com/user-attachments/assets/75dd081f-a9be-4d31-9ae0-307417a9bae3)
-
-
+![image](https://github.com/user-attachments/assets/dce924db-e64a-43da-b096-4c69c2812d14)
+![image](https://github.com/user-attachments/assets/a96aae38-7188-47a4-9770-e82033bde282)
+![image](https://github.com/user-attachments/assets/fd38983b-5488-42cf-93e3-ab9b31dd6917)
 
 ## RESULT
 Thus the program for creating a database using ORM hass been executed successfully
